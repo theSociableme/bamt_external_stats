@@ -10,7 +10,7 @@ class CreateGpuStats < ActiveRecord::Migration
       t.integer :current_temp_0
       t.integer :current_core_clock
       t.string  :desc
-      t.decimal :display, scale: 5, precision: 2
+      t.decimal :display, scale: 2, precision: 5
       t.integer :fan_rpm
       t.integer :fan_speed
       t.integer :hardware_errors

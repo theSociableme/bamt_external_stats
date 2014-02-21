@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20140221001455) do
     t.integer  "current_temp_0"
     t.integer  "current_core_clock"
     t.string   "desc"
-    t.decimal  "display",                   :precision => 2, :scale => 5
+    t.decimal  "display",                   :precision => 5, :scale => 2
     t.integer  "fan_rpm"
     t.integer  "fan_speed"
     t.integer  "hardware_errors"
