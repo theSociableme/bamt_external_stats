@@ -1,6 +1,6 @@
 MiningStats::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-  i
+
   config.assets.precompile += ['active_admin.css', 'active_admin.js']
 
   # Code is not reloaded between requests
