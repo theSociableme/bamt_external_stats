@@ -1,13 +1,22 @@
-%h1 GpuStats#index
 
+%h1 Temperature
+#temp_container{style:"width:100%; height:400px;"}
 
-#container{style:"width:100%; height:400px;"}
+%h1 Core Clock
+#core_container{style:"width:100%; height:400px;"}
 
+%h1 Memory Clock
+#mem_container{style:"width:100%; height:400px;"}
+
+%h1 Kh/s
+#khash_container{style:"width:100%; height:400px;"}
 
 :javascript
 
   $(function () {
-      $('#container').highcharts({
+
+
+      $('#temp_container').highcharts({
           chart: {
               type: 'line'
           },
@@ -30,4 +39,77 @@
               data:  #{@gpu_stats_by_display['0.1'.to_d].map(&:current_temp_0).to_json}
           }]
       });
+
+      $('#core_container').highcharts({
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'Core Clock'
+          },
+          xAxis: {
+              categories: #{@gpu_stats.map { |gpu_stat| gpu_stat.created_at.strftime("%H:%M")}.uniq }
+          },
+          yAxis: {
+              title: {
+                  text: 'Fruit eaten'
+              }
+          },
+          series: [{
+              name: 'GPU #1',
+              data:  #{@gpu_stats_by_display['0.0'.to_d].map(&:current_core_clock).to_json}
+          }, {
+              name: 'GPU #2',
+              data:  #{@gpu_stats_by_display['0.1'.to_d].map(&:current_core_clock).to_json}
+          }]
+      });
+
+      $('#mem_container').highcharts({
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'Memory Clock'
+          },
+          xAxis: {
+              categories: #{@gpu_stats.map { |gpu_stat| gpu_stat.created_at.strftime("%H:%M")}.uniq }
+          },
+          yAxis: {
+              title: {
+                  text: 'Fruit eaten'
+              }
+          },
+          series: [{
+              name: 'GPU #1',
+              data:  #{@gpu_stats_by_display['0.0'.to_d].map(&:current_mem_clock).to_json}
+          }, {
+              name: 'GPU #2',
+              data:  #{@gpu_stats_by_display['0.1'.to_d].map(&:current_mem_clock).to_json}
+          }]
+      });
+
+      $('#khash_container').highcharts({
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'Temperature'
+          },
+          xAxis: {
+              categories: #{@gpu_stats.map { |gpu_stat| gpu_stat.created_at.strftime("%H:%M")}.uniq }
+          },
+          yAxis: {
+              title: {
+                  text: 'Fruit eaten'
+              }
+          },
+          series: [{
+              name: 'GPU #1',
+              data:  #{@gpu_stats_by_display['0.0'.to_d].map(&:hashrate).to_json}
+          }, {
+              name: 'GPU #2',
+              data:  #{@gpu_stats_by_display['0.1'.to_d].map(&:hashrate).to_json}
+          }]
+      });
+
   });
