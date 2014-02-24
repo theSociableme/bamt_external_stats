@@ -1,0 +1,2 @@
+module GpuStatsHelper
+end

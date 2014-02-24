@@ -82,6 +82,8 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    highcharts-rails (3.0.9)
+      railties (>= 3.1)
     hike (1.2.3)
     i18n (0.6.9)
     inherited_resources (1.4.1)
@@ -169,6 +171,7 @@ DEPENDENCIES
   activeadmin!
   coffee-rails (~> 3.2.1)
   haml-rails
+  highcharts-rails
   inherited_resources
   jquery-rails
   pg

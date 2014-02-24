@@ -1,0 +1,33 @@
+%h1 GpuStats#index
+
+
+#container{style:"width:100%; height:400px;"}
+
+
+:javascript
+
+  $(function () {
+      $('#container').highcharts({
+          chart: {
+              type: 'line'
+          },
+          title: {
+              text: 'Temperature'
+          },
+          xAxis: {
+              categories: #{@gpu_stats.map { |gpu_stat| gpu_stat.created_at.strftime("%H:%M")}.uniq }
+          },
+          yAxis: {
+              title: {
+                  text: 'Fruit eaten'
+              }
+          },
+          series: [{
+              name: 'GPU #1',
+              data:  #{@gpu_stats_by_display['0.0'.to_d].map(&:current_temp_0).to_json}
+          }, {
+              name: 'GPU #2',
+              data:  #{@gpu_stats_by_display['0.1'.to_d].map(&:current_temp_0).to_json}
+          }]
+      });
+  });
